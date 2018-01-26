@@ -30,15 +30,8 @@
         <!-- /.search form -->
 
         <!-- Sidebar Menu -->
-       <ul class="sidebar-menu">
-            <li class="header">Menú</li>
-            <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
-            <li><a href="{{ url('clientes')}}"><i class='fa fa-link'></i> <span>Clientes</span></a></li>
-            <li><a href="{{url('pantallas')}}"><i class='fa fa-link'></i> <span>pantallas</span></a></li>
-
-
-        </ul><!-- /.sidebar-menu -->
+        {{ Menu::sidebar() }}
+        <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
 </aside>
