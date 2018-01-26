@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\client;
+
 class clientsController extends Controller
 {
     /**
@@ -13,7 +14,8 @@ class clientsController extends Controller
      */
     public function index()
     {
-        return view('adminlte::Clientes.clientes');
+        $clientes = client::all();
+        return view('adminlte::Clientes.clientes')->with("clientes",$clientes);
     }
 
     /**
@@ -36,7 +38,7 @@ class clientsController extends Controller
     {
         $cliente =new client($request->all());
   
-       $cliente ->save();
+        $cliente ->save();
         return redirect()->back();
     }
 
@@ -83,5 +85,14 @@ class clientsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function pantallas($id){
+        $cliente = client::findOrFail($id);
+        return $cliente->pantallas()->get();
+    }
+
+    public function getLink(Request $request){
+       return $request["mac"];
     }
 }

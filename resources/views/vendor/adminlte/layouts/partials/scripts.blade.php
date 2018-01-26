@@ -9,3 +9,24 @@
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the
       fixed layout. -->
+<script type="text/javascript">
+	
+	$("#clientes").change(function(e){
+		$.get('/cliente/'+$(e.currentTarget).val()+"/pantallas",
+			function(data){
+				cadena = "";
+				for(var i in data){
+					estado = (data[i]["estado_de_activacion"]==1)?true:false;
+					string = `<button type="button" class="btn btn-`+((estado)?'success':'danger')+` btn-sm">
+								<i class="fa fa-fw fa-`+((estado)?'check':'close')+`"></i>
+							</button>`;
+					cadena+=`<tr>
+								<td>`+data[i]["mac"]+`</td>
+								<td>`+string+`</td>
+							</tr>`
+				}
+				$("#pantallas tbody").html(cadena);
+			}
+		)
+	});
+</script>

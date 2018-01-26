@@ -20,7 +20,7 @@ protected $table = 'clients';
     // SUS HIJOS
 
     public function pantallas(){
-        return $this->hasMany('app\screen');
+        return $this->hasMany('App\screen','cl_id','id');
     }
 
 }
