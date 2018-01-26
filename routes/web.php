@@ -27,5 +27,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::resource('clientes','clientsController');
 Route::resource('pantallas','screensController');
+Route::resource('canales','channelsController');
+Route::post('/guardar','channelsController@guardar')->name('canales.guardar');
+
+Route::get('{id}/getPantallas','apiController@getPantallas')->name('api.getPantallas');
 Route::get('cliente/{id}/pantallas','clientsController@pantallas');
 Route::post('/api/getLink','clientsController@getLink');

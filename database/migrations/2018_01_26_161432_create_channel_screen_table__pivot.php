@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClientsTable extends Migration
+class CreateChannelScreenTablePivot extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateClientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('channel_screen', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cl_nombres');
-            $table->string('cl_apellido_p');
-            $table->string('cl_apellido_m');
-            $table->enum('cl_estado_de_activacion', [0, 1])->default(1);
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ class CreateClientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('channel_screen');
     }
 }

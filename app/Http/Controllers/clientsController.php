@@ -12,6 +12,10 @@ class clientsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+  {
+      $this->middleware('auth');
+  }
     public function index()
     {
         $clientes = client::all();
@@ -93,6 +97,6 @@ class clientsController extends Controller
     }
 
     public function getLink(Request $request){
-       return $request["mac"];
+       return $request["sn_mac"];
     }
 }

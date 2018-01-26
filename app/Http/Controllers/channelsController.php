@@ -3,24 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\screen;
+use App\channel;
 use App\client;
-class screensController extends Controller
+use App\screen;
+use App\channelClient;
+class channelsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
-         public function __construct()
-  {
-      $this->middleware('auth');
-  }
     public function index()
     {
-        $clientes = client::orderBy('id', 'DESC')->pluck('cl_nombres', 'id');
-        return view('adminlte::Pantallas.pantallas')->with('clientes',$clientes);
+                $clientes = client::orderBy('cl_nombres', 'ASC')->pluck('cl_nombres', 'id');
+        $pantallas = screen::orderBy('sn_mac', 'ASC')->pluck('sn_mac', 'id');
+        $canales = channel::orderBy('id', 'DESC')->pluck('cn_nombre', 'id');;
+     return view('adminlte::canales.canales')->with('canales',$canales)->with('clientes',$clientes)->with('pantallas',$pantallas);
     }
 
     /**
@@ -41,8 +40,8 @@ class screensController extends Controller
      */
     public function store(Request $request)
     {
-        $pantallas = new screen($request->all());
-       $pantallas ->save();
+        $canales = new channel($request->all());
+       $canales ->save();
         return redirect()->back();
     }
 
@@ -89,5 +88,11 @@ class screensController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function guardar(Request $request){
+        
+        $pivote = new channelClient($request->all());
+        dd($pivote);
     }
 }

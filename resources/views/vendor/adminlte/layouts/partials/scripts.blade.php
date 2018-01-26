@@ -16,12 +16,12 @@
 			function(data){
 				cadena = "";
 				for(var i in data){
-					estado = (data[i]["estado_de_activacion"]==1)?true:false;
+					estado = (data[i]["cl_estado_de_activacion"]==1)?true:false;
 					string = `<button type="button" class="btn btn-`+((estado)?'success':'danger')+` btn-sm">
 								<i class="fa fa-fw fa-`+((estado)?'check':'close')+`"></i>
 							</button>`;
 					cadena+=`<tr>
-								<td>`+data[i]["mac"]+`</td>
+								<td>`+data[i]["sn_mac"]+`</td>
 								<td>`+string+`</td>
 							</tr>`
 				}

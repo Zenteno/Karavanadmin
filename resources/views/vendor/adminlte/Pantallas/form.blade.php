@@ -12,8 +12,8 @@
 
 <div class=" col-lg-12">
 	<div class="form-group ">
-		{{ Form::label('mac','Ingrese mac') }}
-		{{ Form::text('mac',null,['class' => 'form-control', 'placeholder'=> '...', 'required']) }}
+		{{ Form::label('sn_mac','Ingrese mac') }}
+		{{ Form::text('sn_mac',null,['class' => 'form-control', 'placeholder'=> '...', 'required']) }}
 	</div>
 </div>
 </div>

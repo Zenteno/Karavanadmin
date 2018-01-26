@@ -10,9 +10,10 @@ protected $table = 'clients';
 
     protected $fillable = [
     	'id',
-    	'nombres',
-    	'apellido_p',
-    	'apellido_m',
+    	'cl_nombres',
+    	'cl_apellido_p',
+    	'cl_apellido_m',
+        'cl_estado_de_activacion',
     	'created_at',
     	'updated_at'
     ];
@@ -22,5 +23,8 @@ protected $table = 'clients';
     public function pantallas(){
         return $this->hasMany('App\screen','cl_id','id');
     }
-
+    //MUCHOSAMUCHOS
+        public function canales(){
+        return $this->belongsToMany('App\channel');
+    }
 }
