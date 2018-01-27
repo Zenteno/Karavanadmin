@@ -23,8 +23,8 @@ protected $table = 'clients';
     public function pantallas(){
         return $this->hasMany('App\screen','cl_id','id');
     }
-    //MUCHOSAMUCHOS
-        public function canales(){
-        return $this->belongsToMany('App\channel');
+    
+    public function canales(){
+        return $this->hasMany('App\channelClient','cl_id','id');
     }
 }

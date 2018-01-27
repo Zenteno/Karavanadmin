@@ -54,13 +54,13 @@
 				</div>
 				<div class="box-body">
 					<div class="row">
-						<div class="col-xs-2" style=" margin-right: -50px;">
-							<label class="switch" style="margin-bottom: 0px; margin-top: 40px;">
+						<div class="col-xs-2" style=" margin-right: -50px;  margin-top: 40px;">
+							<label class="switch" style="margin-bottom: 0px;">
 								<input type="checkbox" checked="">
 								<span class="slider round"></span>
 							</label>
 						</div>
-						<div class="col-xs-10">
+						<div class="col-xs-8">
 							<h5>
 								<div class="form-group">
 									<label>
@@ -78,21 +78,19 @@
 								</div>
 							</h5>
 						</div>
+						<div class="col-xs-2" style="margin-top: 30px;">
+							<button class="btn btn-success" type="submit" onclick="guardar()">
+							Guardar
+							</button>
+						</div>
 						
 					</div>
 					<div class="row">
 						<div class="col-xs-12">
 							<h5>
 								<label>Canales</label>
-								<select class="form-control select2" multiple="multiple" data-placeholder="Selecciona Canales"
+								<select id="canales" class="form-control select2" multiple="multiple" data-placeholder="Selecciona Canales"
 									style="width: 100%;">
-									<option>Canal 9</option>
-									<option>CDF Premium</option>
-									<option>CDO</option>
-									<option>Play Boy</option>
-									<option>CoelemuTV</option>
-									<option>Viejito TV</option>
-									<option>Karavana Premium</option>
 								</select>
 							</h5>
 						</div>

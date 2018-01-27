@@ -18,11 +18,12 @@
 	$("#clientes").change(function(e){
 		$.get('/cliente/'+$(e.currentTarget).val()+"/pantallas",
 			function(data){
-				
-				
+				pantallas  = data.pantallas;
+				canales = data.canales;
+
 				cadena = "";
-				for(var i in data){
-					estado = (data[i]["estado_de_activacion"]==1)?true:false;
+				for(var i in pantallas){
+					estado = (pantallas[i]["estado_de_activacion"]==1)?true:false;
 					toggle = `
 						<label class="switch" style="margin-bottom: 0px;">
 							<input type="checkbox" `+((estado)?'checked=""':'')+`>
@@ -30,15 +31,45 @@
 						</label>
 					`;
 					cadena+=`<tr>
-								<td>`+data[i]["sn_mac"]+`</td>
+								<td>`+pantallas[i]["sn_mac"]+`</td>
 								<td>`+toggle+`</td>
-								<td><a href="pantallas/`+data[i]["id"]+`"><i class="fa fa-edit"></i> Editar</a></td>
+								<td><a href="pantallas/`+pantallas[i]["id"]+`"><i class="fa fa-edit"></i> Editar</a></td>
 							</tr>`
 				}
 				$("#pantallas tbody").html(cadena);
+				cadena = "";
+				for(var i in canales){
+					estado = (canales[i]["habilitado"]?' selected':'')
+					cadena+='<option value="'+canales[i].id+'"'+estado+'>'+canales[i].cn_nombre+'</option>';
+				}
+				$("#canales").html(cadena);
 				$('.select2').select2();
 			}
-		)
+		).fail(function() {
+    		$("#canales").html("");
+			$("#pantallas tbody").html("");
+				
+  		})
 	});
 	$('.select2').select2();
+	function guardar(){
+		$.ajaxSetup({
+            headers:
+            { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+        });
+		var cliente = $("#clientes option:selected").val();
+		var canales = $("#canales option:selected");
+		var ch = [];
+		canales.each(function() {
+			ch.push(parseInt($(this).val()));
+    	});
+    	$.post('/cliente/'+cliente+'/asignar',{
+			canales : ch
+		},function(data){
+
+		});
+		
+	}
+
+
 </script>

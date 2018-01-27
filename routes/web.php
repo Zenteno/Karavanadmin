@@ -32,4 +32,5 @@ Route::post('/guardar','channelsController@guardar')->name('canales.guardar');
 
 Route::get('{id}/getPantallas','apiController@getPantallas')->name('api.getPantallas');
 Route::get('cliente/{id}/pantallas','clientsController@pantallas');
+Route::post('cliente/{id}/asignar','clientsController@asignaPantallas');
 Route::post('/api/getLink','clientsController@getLink');

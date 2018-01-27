@@ -9,19 +9,16 @@ class channel extends Model
 protected $table = 'channels';
 
     protected $fillable = [
-    	'id',
     	'cn_nombre',
     	'cn_descripcion',
     	'cn_url',
-        'cn_estado_de_activacion',
-    	'created_at',
-    	'updated_at'
+        'cn_estado_de_activacion'
     ];
 
     //PADRES
  
     //HIJOS
-        public function pantallas(){
+    public function pantallas(){
         return $this->hasMany('App\screen');
     }
     //MUCHOSAMUCHOS

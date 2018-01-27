@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\client;
+use App\channel;
+use App\channelClient;
 
 class clientsController extends Controller
 {
@@ -91,9 +93,34 @@ class clientsController extends Controller
         //
     }
 
+    public function asignaPantallas(Request $request, $id)
+    {
+        $canales = $request["canales"];
+        $misCanales = channelClient::where("cl_id",$id)->delete();
+        foreach ($canales as $canal) {
+            channelClient::create(["cl_id"=>$id,"cn_id"=>$canal]);
+        }
+    }
+
     public function pantallas($id){
         $cliente = client::findOrFail($id);
-        return $cliente->pantallas()->get();
+        $canales = channel::all();
+        $misCanales  = $cliente->canales()->get();
+        $channels =[];
+        foreach ($canales as $canal) {
+            $canal["habilitado"] = false;
+            foreach ($misCanales as $cnal) {
+                if($canal->id==$cnal->cn_id){
+                    $canal["habilitado"] = true;
+                    break;
+                }
+            }
+            $channels[] = $canal;
+        }
+        $datos = [];
+        $datos["canales"] =$channels;
+        $datos["pantallas"] = $cliente->pantallas()->get();
+        return $datos;
     }
 
     public function getLink(Request $request){
